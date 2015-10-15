@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <malloc.h>
 
-
 int intCompare(int num1,int num2){
   if(num1>num2)
     return 1;
@@ -38,104 +37,38 @@ int *mergeSortedList(int arr1[],int arr2[],int arrSize1,int arrSize2){
         }
       }
     }
-    else {}
+    else{}
     k++;
   }
-
-  // for(i=0;i<arrSize1+arrSize2;i++){
-    // printf("%d\n",*(finalArr+i));
-  // }
 
   return finalArr;
 }
 
-// int *mergeSort(int arr1[],int len){
-  // int i,j=0;
-  // int *ptr;
-  // int finalArr[len];
-  
-  // int arr2[len];
-  // int arr3[len];
-  // int split=2;
-  
-  // for(i=0;i<len;i=i+split){
-    // for(j=0;j<=i;j++){
-      // arr2[j]=arr1[i+j];
-      // arr3[j]=arr1[i+j+(split/2)];
-    // }
-    
-      // ptr = mergeSortedList(arr2,arr3,1,1);
-      // finalArr[i]=*ptr;
-      // finalArr[i+1]=*(ptr+1);
-  // }
-  
-    // printf("%d\n",finalArr[0]);
-    // printf("%d\n",finalArr[1]);
-    // printf("%d\n",finalArr[2]);
-    // printf("%d\n",finalArr[3]);
-    // printf("%d\n",finalArr[4]);
-    // printf("%d\n",finalArr[5]);
-    // printf("%d\n",finalArr[6]);
-    // printf("%d\n",finalArr[7]);
-    // printf("%d\n",finalArr[8]);
-    // printf("%d\n",finalArr[9]);
-// }
-
-int mergeSort(int arr1[],int len){
-  int i,j=0,k;
+int *mergeSort(int arr1[],int len){
+  int split=2;
+  int i,j,k;
   int arrSize2=0,arrSize3=0;
   int *ptr;
-  int finalArr[len];
-  int split=2;
-  
-  int arr2[len];
-  int arr3[len];
-  
-  // for(i=0;i<len;i=i+split){
-      // arr2[j]=arr1[i];
-      // arrSize2++;
-      // arr3[j]=arr1[i+1];
-      // arrSize3++;
-      
-      // ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
-      // arrSize2=0;arrSize3=0;
-      
-      // finalArr[i]=*ptr;
-      // finalArr[i+1]=*(ptr+1);      
-  // }
-    
-  for(i=0;i<len;i=i+split){
-      arr2[j]=arr1[i];
-      arrSize2++;
-      arr3[j]=arr1[i+1];
-      arrSize3++;
-      
-      ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
-      arrSize2=0;arrSize3=0;
-      
-      finalArr[i]=*ptr;
-      finalArr[i+1]=*(ptr+1);      
+  int arr2[len],arr3[len],finalArr[len];
+
+  while(split<=len){
+    for(i=0;i<len;i=i+split){
+      for(j=0;j<(split/2);j++){
+        arr2[j]=arr1[i+j];
+        arrSize2++;
+        arr3[j]=arr1[i+(split/2)+j];
+        arrSize3++;
+      }
+        ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
+        arrSize2=0;arrSize3=0;
+        for(k=0;k<split;k++)
+          finalArr[i+k]=*(ptr+k);
+    }
+    arr1=finalArr;
+    split=split*2;
   }
+
+  ptr=finalArr;
   
-    printf("%d\n",finalArr[0]);
-    printf("%d\n",finalArr[1]);
-    printf("%d\n",finalArr[2]);
-    printf("%d\n",finalArr[3]);
-    printf("%d\n",finalArr[4]);
-    printf("%d\n",finalArr[5]);
-    printf("%d\n",finalArr[6]);
-    printf("%d\n",finalArr[7]);
-    printf("%d\n",finalArr[8]);
-    printf("%d\n",finalArr[9]);
-  
-  
-  
-  
+  return ptr;
 }
-
-
-
-
-
-
-
