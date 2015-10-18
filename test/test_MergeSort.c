@@ -1,6 +1,7 @@
 #include "unity.h"
 #include "MergeSort.h"
 #include <malloc.h>
+#include <stdio.h>
 
 void setUp()
 {
@@ -75,18 +76,54 @@ void test_Merge_Sorted_List_function_with_Second_Array_has_more_element()
 
 void test_merge_sort_function()
 {
-	// int arr1[]={9,0,2,4,7,6,0,0};
-	// int arr1[]={0,9,2,4,6,7,0,0};
-	// int arr1[]={0,2,4,9,6,7,0,0};
-	// int arr1[]={0,2,4,9,0,0,6,7};
   int arr1[]={2,4,50,1,6,20,100,11};
   int *ptr;
   int i;
   
   ptr=mergeSort(arr1,sizeof(arr1)/sizeof(int));
+
+  TEST_ASSERT_EQUAL(1,*ptr);
+  TEST_ASSERT_EQUAL(2,*(ptr+1));
+  TEST_ASSERT_EQUAL(4,*(ptr+2));
+  TEST_ASSERT_EQUAL(6,*(ptr+3));
+  TEST_ASSERT_EQUAL(11,*(ptr+4));
+  TEST_ASSERT_EQUAL(20,*(ptr+5));
+  TEST_ASSERT_EQUAL(50,*(ptr+6));
+  TEST_ASSERT_EQUAL(100,*(ptr+7));
   
-  for(i=0;i<8;i++)
-    printf("%d\n",*(ptr+i));
+  free(ptr);
+}
+
+void test_merge_sort_function2()
+{
+  int arr1[]={2,4,50,1,6,20,100,11,12,13,0};
+  int *ptr;
+  int i;
+  
+  ptr=mergeSort(arr1,sizeof(arr1)/sizeof(int));
+  
+  TEST_ASSERT_EQUAL(0,*ptr);
+  TEST_ASSERT_EQUAL(1,*(ptr+1));
+  TEST_ASSERT_EQUAL(2,*(ptr+2));
+  TEST_ASSERT_EQUAL(4,*(ptr+3));
+  TEST_ASSERT_EQUAL(6,*(ptr+4));
+  TEST_ASSERT_EQUAL(11,*(ptr+5));
+  TEST_ASSERT_EQUAL(12,*(ptr+6));
+  TEST_ASSERT_EQUAL(13,*(ptr+7));  
+  TEST_ASSERT_EQUAL(20,*(ptr+8));  
+  TEST_ASSERT_EQUAL(50,*(ptr+9));  
+  TEST_ASSERT_EQUAL(100,*(ptr+10));  
+  
+  free(ptr);
+}
+
+void test_function_is_float()
+{
+  float len1=100,len2=100.1212;
+  
+  TEST_ASSERT_EQUAL(0,isFloat( len1 ));
+  TEST_ASSERT_EQUAL(1,isFloat( len2 ));
+  
 }
 
 

@@ -9,6 +9,8 @@ typedef struct{
 
 int intCompare(int num1,int num2);
 
+int isFloat(float f);
+
 int *mergeSortedList(int arr1[],int arr2[],int arrSize1,int arrSize2);
 
 int *mergeSort(int arr1[],int len);
