@@ -61,45 +61,32 @@ int *mergeSort(int arr1[],int len){
   int arrSize2=0,arrSize3=0;
   int *ptr;
   float f;
-  int actualLen=len,firstTime=1;
 
   f=log10(len)/log10(2);
-  
+
   if(isFloat(f)==1){
     len=pow(2,((int)(f+1)));
   }
-  
+
   int arr2[len],arr3[len],finalArr[len];
 
 
   while(split<=len){
     for(i=0;i<len;i=i+split){
       for(j=0;j<(split/2);j++){
-        if((i+j)>actualLen && firstTime)
-          arr2[j]=0;  
-        else
-          arr2[j]=arr1[i+j];
+        arr2[j]=arr1[i+j];
         arrSize2++;
-        
-        if( (i+(split/2)+j)>actualLen && firstTime)
-          arr3[j]=0;
-        else
-          arr3[j]=arr1[i+(split/2)+j];
+        arr3[j]=arr1[i+(split/2)+j];
         arrSize3++;
-        firstTime=0;
       }
-      
-        ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
-        if(split>len)
-          return ptr;
-        arrSize2=0;arrSize3=0;
-        for(k=0;k<split;k++)
-          finalArr[i+k]=*(ptr+k);
+      ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
+      arrSize2=0;arrSize3=0;
+      for(k=0;k<split;k++)
+        finalArr[i+k]=*(ptr+k);
     }
     arr1=finalArr;
     split=split*2;
   }
-
   ptr=finalArr;
 
   return ptr;

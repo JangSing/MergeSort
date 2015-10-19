@@ -74,7 +74,7 @@ void test_Merge_Sorted_List_function_with_Second_Array_has_more_element()
   free(ptr);
 }
 
-void test_merge_sort_function()
+void test_merge_sort_function_given_integer_array_with_length_2_power_of_number_should_return_sorted_array()
 {
   int arr1[]={2,4,50,1,6,20,100,11};
   int *ptr;
@@ -94,7 +94,7 @@ void test_merge_sort_function()
   free(ptr);
 }
 
-void test_merge_sort_function2()
+void test_merge_sort_function_given_integer_array_with_length_not_2_power_of_number_should_return_sorted_array()
 {
   int arr1[]={2,4,50,1,6,20,100,11,12,13,0};
   int *ptr;
