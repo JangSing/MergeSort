@@ -2,6 +2,7 @@
 #include "MergeSort.h"
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void setUp()
 {
@@ -18,6 +19,15 @@ void test_int_compare_function()
   TEST_ASSERT_EQUAL(1,intCompare(num2,num1));
   TEST_ASSERT_EQUAL(0,intCompare(num1,num2));
   TEST_ASSERT_EQUAL(-1,intCompare(num3,num2));
+}
+
+void test_function_is_float()
+{
+  float len1=100,len2=100.1212;
+
+  TEST_ASSERT_EQUAL(0,isFloat( len1 ));
+  TEST_ASSERT_EQUAL(1,isFloat( len2 ));
+
 }
 
 void test_Merge_Sorted_List_function_with_only_single_Element_in_Array()
@@ -79,7 +89,7 @@ void test_merge_sort_function_given_integer_array_with_length_2_power_of_number_
   int arr1[]={2,4,50,1,6,20,100,11};
   int *ptr;
   int i;
-  
+
   ptr=mergeSort(arr1,sizeof(arr1)/sizeof(int));
 
   TEST_ASSERT_EQUAL(1,*ptr);
@@ -90,7 +100,7 @@ void test_merge_sort_function_given_integer_array_with_length_2_power_of_number_
   TEST_ASSERT_EQUAL(20,*(ptr+5));
   TEST_ASSERT_EQUAL(50,*(ptr+6));
   TEST_ASSERT_EQUAL(100,*(ptr+7));
-  
+
   free(ptr);
 }
 
@@ -99,9 +109,9 @@ void test_merge_sort_function_given_integer_array_with_length_not_2_power_of_num
   int arr1[]={2,4,50,1,6,20,100,11,12,13,0};
   int *ptr;
   int i;
-  
+
   ptr=mergeSort(arr1,sizeof(arr1)/sizeof(int));
-  
+
   TEST_ASSERT_EQUAL(0,*ptr);
   TEST_ASSERT_EQUAL(1,*(ptr+1));
   TEST_ASSERT_EQUAL(2,*(ptr+2));
@@ -109,22 +119,15 @@ void test_merge_sort_function_given_integer_array_with_length_not_2_power_of_num
   TEST_ASSERT_EQUAL(6,*(ptr+4));
   TEST_ASSERT_EQUAL(11,*(ptr+5));
   TEST_ASSERT_EQUAL(12,*(ptr+6));
-  TEST_ASSERT_EQUAL(13,*(ptr+7));  
-  TEST_ASSERT_EQUAL(20,*(ptr+8));  
-  TEST_ASSERT_EQUAL(50,*(ptr+9));  
-  TEST_ASSERT_EQUAL(100,*(ptr+10));  
-  
+  TEST_ASSERT_EQUAL(13,*(ptr+7));
+  TEST_ASSERT_EQUAL(20,*(ptr+8));
+  TEST_ASSERT_EQUAL(50,*(ptr+9));
+  TEST_ASSERT_EQUAL(100,*(ptr+10));
+
+
   free(ptr);
 }
 
-void test_function_is_float()
-{
-  float len1=100,len2=100.1212;
-  
-  TEST_ASSERT_EQUAL(0,isFloat( len1 ));
-  TEST_ASSERT_EQUAL(1,isFloat( len2 ));
-  
-}
 
 
 

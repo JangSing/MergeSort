@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
+#include <limits.h>
 
 int intCompare(int num1,int num2){
   if(num1>num2)
@@ -25,11 +26,11 @@ int *mergeSortedList(int arr1[],int arr2[],int arrSize1,int arrSize2){
 
   int i=0,j=0,k=0;
 
-  while(i!=arrSize1 || j!=arrSize2){
+  while(i<arrSize1 || j<arrSize2){
     if(intCompare(arr1[i],arr2[j])==1){
       *(finalArr+k)=arr2[j];
       j++;
-      if(j==arrSize2 && i!=arrSize1){
+      if(j==arrSize2 && i<arrSize1){
         for(i=i;i<arrSize1;i++){
           k++;
           *(finalArr+k)=arr1[i];
@@ -61,6 +62,7 @@ int *mergeSort(int arr1[],int len){
   int arrSize2=0,arrSize3=0;
   int *ptr;
   float f;
+  int actualLen=len;
 
   f=log10(len)/log10(2);
 
@@ -74,11 +76,18 @@ int *mergeSort(int arr1[],int len){
   while(split<=len){
     for(i=0;i<len;i=i+split){
       for(j=0;j<(split/2);j++){
-        arr2[j]=arr1[i+j];
+        if((i+j)>actualLen)
+          arr2[j]=INT_MAX;
+        else
+          arr2[j]=arr1[i+j];
         arrSize2++;
-        arr3[j]=arr1[i+(split/2)+j];
+        if((i+(split/2)+j)>actualLen)
+          arr3[j]=INT_MAX;
+        else
+          arr3[j]=arr1[i+(split/2)+j];
         arrSize3++;
       }
+
       ptr = mergeSortedList(arr2,arr3,arrSize2,arrSize3);
       arrSize2=0;arrSize3=0;
       for(k=0;k<split;k++)
